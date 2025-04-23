@@ -15,24 +15,27 @@ export default function LogIn() {
           type="email"
           placeholder="Email"
           required
-          errors={[]}
+          errors={state?.error?.fieldErrors.email ?? []}
         />
         <FormInput
           name="username"
           type="text"
           placeholder="Username"
           required
-          errors={[]}
+          errors={state?.error?.fieldErrors.username ?? []}
         />
         <FormInput
           name="password"
           type="password"
           placeholder="Password"
           required
-          errors={state?.errors ?? []}
+          errors={state?.error?.fieldErrors.password ?? []}
         />
         <FormButton text="Log in" success={state?.success} />
       </form>
+      {state?.success && (
+        <span className="text-green-400 font-medium">Success</span>
+      )}
     </div>
   );
 }

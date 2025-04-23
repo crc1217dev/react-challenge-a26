@@ -10,7 +10,7 @@ export default function FormInput({
   type,
   placeholder,
   required,
-  errors,
+  errors = [],
   name,
 }: FormInputProps) {
   return (
