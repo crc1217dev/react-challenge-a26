@@ -3,9 +3,12 @@ import z from "zod";
 
 const formSchema = z.object({
   username: z.string().min(5, "less than 5 characters"),
-  email: z.string().email().endsWith("@zod.com", {
-    message: "This email forms like @zod.com ",
-  }),
+  email: z
+    .string()
+    .email()
+    .refine((email) => email.includes("@zod.com"), {
+      message: "Email must be from zod.com",
+    }),
   password: z
     .string()
     .min(10, "morn than 10 characters")

@@ -2,7 +2,7 @@
 import FormButton from "@/components/form-btn";
 import FormInput from "@/components/form-input";
 import { useFormState } from "react-dom";
-import { handleForm } from "./action";
+import { handleForm } from "./lib/action";
 
 export default function LogIn() {
   const [state, action] = useFormState(handleForm, null);
