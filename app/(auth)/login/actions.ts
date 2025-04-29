@@ -2,6 +2,7 @@
 
 import bcrypt from "bcrypt";
 import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   PASSWORD_MIN_LENGTH,
   PASSWORD_REGEX,
   PASSWORD_REGEX_ERROR,
@@ -41,7 +42,7 @@ const formSchema = z.object({
   // .regex(PASSWORD_REGEX, PASSWORD_REGEX_ERROR),
 });
 
-export async function logIn(prevState: any, formData: FormData) {
+export async function logIn(prevState: unknown, formData: FormData) {
   const data = {
     email: formData.get("email"),
     password: formData.get("password"),
@@ -67,7 +68,7 @@ export async function logIn(prevState: any, formData: FormData) {
       const session = await getSession();
       session.id = user!.id;
       await session.save();
-      redirect("/profile");
+      redirect("/");
     } else {
       return {
         fieldErrors: {

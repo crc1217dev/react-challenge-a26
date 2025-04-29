@@ -41,7 +41,7 @@ export async function smsLogIn(prevState: ActionState, formData: FormData) {
         error: result.error.flatten(),
       };
     } else {
-      redirect("/");
+      redirect("/welcome");
     }
   }
 }
