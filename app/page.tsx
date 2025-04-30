@@ -4,9 +4,9 @@ import Button from "../components/button";
 import getSession from "../lib/session";
 import db from "../lib/db";
 import { redirect } from "next/navigation";
-import ProductList from "@/components/tweet-list";
 import TweetList from "@/components/tweet-list";
-import Tweets from "./(tabs)/tweets/page";
+import { getInitialTweets } from "./(tabs)/tweets/actions";
+import AddTweet from "@/components/add-tweet";
 
 async function getUser() {
   const session = await getSession();
@@ -30,7 +30,7 @@ export default async function Home() {
 
     redirect("/login");
   };
-
+  const tweets = await getInitialTweets();
   return (
     <div className="flex flex-col items-center min-h-screen pt-10">
       <>
@@ -40,7 +40,8 @@ export default async function Home() {
             <Button text="Log Out"></Button>
           </form>
         </div>
-        <Tweets />
+        <AddTweet />
+        <TweetList initialTweets={tweets} />
       </>
     </div>
   );
