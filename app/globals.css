@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #f97316;
+  --primary-hover: #fb923c;
+  --link: #f97316;
+  --border: #e5e7eb;
 }
 
 @theme inline {
@@ -16,28 +20,33 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #f97316;
+    --primary-hover: #fb923c;
+    --link: #f97316;
+    --border: #374151;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
 @layer base {
   a {
-    @apply text-orange-500;
+    @apply text-orange-500 hover:text-orange-400 transition-colors;
   }
 }
 
 @layer utilities {
   .text-bigger-hello {
-    @apply text-3xl font-semibold;
+    @apply text-3xl font-semibold text-gray-900 dark:text-white;
   }
 }
 
 @layer components {
   .primary-btn {
-    @apply w-full bg-orange-500 text-white  font-medium  rounded-md text-center hover:bg-orange-400 transition-colors;
+    @apply w-full bg-orange-500 text-white font-medium rounded-md text-center hover:bg-orange-400 transition-colors disabled:bg-gray-300 dark:disabled:bg-gray-700 disabled:cursor-not-allowed;
   }
 }

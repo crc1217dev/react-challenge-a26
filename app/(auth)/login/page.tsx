@@ -6,6 +6,7 @@ import SocialLogin from "@/components/social-login";
 import { logIn } from "./actions";
 import { PASSWORD_MIN_LENGTH } from "@/lib/constants";
 import { useActionState } from "react";
+import Link from "next/link";
 
 export default function LogIn() {
   const [state, dispatch] = useActionState(logIn, null);
@@ -33,7 +34,13 @@ export default function LogIn() {
         />
         <FormButton text="Log in" />
       </form>
-      <SocialLogin />
+      {/* <SocialLogin /> */}
+      <div className="flex gap-2">
+        <span>계정이 없나요?</span>
+        <Link href="/create-account" className="hover:underline">
+          회원가입
+        </Link>
+      </div>
     </div>
   );
 }

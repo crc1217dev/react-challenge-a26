@@ -1,27 +1,52 @@
-import { InputHTMLAttributes } from "react";
+"use client";
 
-interface InputProps {
-  name: string;
-  errors?: string[];
-}
+import { InputHTMLAttributes, ReactNode } from "react";
+import { useFormStatus } from "react-dom";
 
-export default function Input({
+const Input = ({
   name,
-  errors = [],
+  placeholder,
+  errors,
+  labelIcon,
   ...rest
-}: InputProps & InputHTMLAttributes<HTMLInputElement>) {
+}: {
+  name: string;
+  placeholder: string;
+  errors?: string[];
+  labelIcon?: ReactNode;
+} & InputHTMLAttributes<HTMLInputElement>) => {
+  const { pending } = useFormStatus();
+
   return (
-    <div className="flex flex-col gap-2">
-      <input
-        name={name}
-        className="bg-transparent rounded-md w-full h-10 px-2 focus:outline-none ring-2 focus:ring-4 transition ring-neutral-200 focus:ring-orange-500 border-none placeholder:text-neutral-400"
-        {...rest}
-      />
-      {errors.map((error, index) => (
-        <span key={index} className="text-red-500 font-medium">
-          {error}
-        </span>
-      ))}
+    <div className="flex flex-col gap-1 w-full">
+      <div className="relative flex">
+        <label
+          htmlFor={name}
+          className="absolute top-1/2 left-4 -translate-y-1/2 text-stone-600 *:size-5"
+        >
+          {labelIcon}
+        </label>
+        <input
+          id={name}
+          className={`w-full h-12 pl-11 rounded-3xl bg-transparent text-stone-600 border placeholder:text-stone-400 focus:outline-none focus:ring focus:ring-offset-2 transition ${
+            errors
+              ? "border-red-500 focus:ring-red-400"
+              : "border-stone-400 focus:ring-stone-300"
+          }`}
+          name={name}
+          placeholder={placeholder}
+          disabled={pending}
+          {...rest}
+        />
+      </div>
+      <div>
+        {errors?.map((error) => (
+          <p key={error} className="pt-2 pl-1 text-red-400">
+            {error}
+          </p>
+        ))}
+      </div>
     </div>
   );
-}
+};
+export default Input;

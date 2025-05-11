@@ -6,27 +6,23 @@ interface Routes {
 }
 
 const publicOnlyUrls: Routes = {
-  "/": true,
   "/login": true,
-  "/sms": true,
   "/create-account": true,
-  "/welcome": true,
 };
 
 export async function middleware(request: NextRequest) {
   const session = await getSession();
-  const exists = publicOnlyUrls[request.nextUrl.pathname];
-  // if (!session.id) {
-  //   if (!exists) {
-  //     return NextResponse.redirect(new URL("/welcome", request.url));
-  //   }
-  // } else {
-  //   if (exists) {
-  //     return NextResponse.redirect(new URL("/", request.url));
-  //   }
-  // }
+  const isPublicUrl = publicOnlyUrls[request.nextUrl.pathname];
+  if (!session.id) {
+    if (!isPublicUrl) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  } else {
+    if (isPublicUrl) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+  }
 }
-
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

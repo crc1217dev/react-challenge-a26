@@ -1,26 +1,30 @@
+import { User } from "@/app/generated/prisma";
 import { formatToTimeAgo } from "@/lib/utils";
-import Image from "next/image";
 import Link from "next/link";
 
-interface ListProductProps {
-  tweet: string;
-  createdAt: Date;
-  id: number;
-}
-
-export default function ListProduct({
+export default function ListTweet({
   tweet,
   createdAt,
   id,
-}: ListProductProps) {
+  user,
+}: {
+  tweet: string;
+  createdAt: Date;
+  id: number;
+  user: User;
+}) {
   return (
-    <Link href={`/tweets/${id}`} className="flex gap-5">
-      <div className="flex flex-col gap-1 *:text-white">
-        <span className="text-lg">{tweet}</span>
-        <span className="text-sm text-neutral-500">
+    <Link
+      href={`/tweets/${id}`}
+      className="flex flex-col p-10 rounded-2xl *:text-stone-700 hover:bg-stone-200"
+    >
+      <div className="flex items-center justify-between">
+        <span className="text-lg font-bold">{user.username}</span>
+        <span className="text-sm text-stone-400">
           {formatToTimeAgo(createdAt.toString())}
         </span>
       </div>
+      <p className="text-lg">{tweet}</p>
     </Link>
   );
 }

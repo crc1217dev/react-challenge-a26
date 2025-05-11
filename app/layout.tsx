@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,8 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Clone of Carrot Market",
-    default: "Clone of Carrot Market",
+    template: "%s | Twitter clone",
+    default: "Clone of Twitter",
   },
 };
 
@@ -25,12 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-white h-screen  max-w-screen-sm mx-auto`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen max-w-screen-sm mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-white`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

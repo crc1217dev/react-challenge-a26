@@ -20,8 +20,9 @@ model User {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   SMSToken  SMSToken[]
-    Tweet Tweet[]
-  Like Like[]
+  tweets Tweet[]
+  like Like[]
+  responses Response[]
   @@index([username])
   @@index([email])
 }
@@ -43,12 +44,12 @@ model Tweet {
   updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  like Like[]
+  responses Response[]
+    @@index([userId]) 
 
-  Like Like[]
-     @@index([userId]) 
 }
 model Like {
-  id        Int      @id @default(autoincrement())
   tweetId   Int
   userId    Int
   createdAt DateTime @default(now())
@@ -57,6 +58,22 @@ model Like {
   tweet Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)  
 
-    @@unique([userId, tweetId]) 
-   @@index([tweetId]) 
+  @@unique([userId, tweetId], name: "id") 
+  @@index([userId])
+  @@index([tweetId])
+}
+
+model Response {
+  id        Int      @id @default(autoincrement())
+  text  String
+  tweetId   Int
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tweet Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)  
+
+  @@index([userId])
+  @@index([tweetId])
 }
