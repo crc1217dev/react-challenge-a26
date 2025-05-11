@@ -58,8 +58,16 @@ export async function uploadTweet(_: unknown, formData: FormData) {
       isSuccess: false,
     };
   }
+
   const session = await getSession();
-  if (session.id) {
+  if (!session.id) {
+    return {
+      error: "로그인이 필요합니다.",
+      isSuccess: false,
+    };
+  }
+
+  try {
     const tweet = await db.tweet.create({
       data: {
         tweet: result.data.tweet,
@@ -71,6 +79,11 @@ export async function uploadTweet(_: unknown, formData: FormData) {
       },
     });
     redirect(`/tweets/${tweet.id}`);
+  } catch (error) {
+    return {
+      error: "트윗 업로드 중 오류가 발생했습니다.",
+      isSuccess: false,
+    };
   }
 }
 

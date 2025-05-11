@@ -15,11 +15,13 @@ export default function AddTweet() {
           placeholder="How was today?"
           className="w-full p-5 rounded-md resize-none bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400"
         />
-        {!state?.isSuccess && (
-          <span className="text-red-500 dark:text-red-400">
-            {state?.error.fieldErrors.tweet}
-          </span>
-        )}
+        {!state?.isSuccess &&
+          state?.error &&
+          typeof state.error !== "string" && (
+            <span className="text-red-500 dark:text-red-400">
+              {state.error.fieldErrors.tweet}
+            </span>
+          )}
       </div>
       <Button text="Add tweet" />
     </form>

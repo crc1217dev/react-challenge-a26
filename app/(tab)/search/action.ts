@@ -21,7 +21,7 @@ export async function getTWeetByKeyword(keyword: string) {
       _count: {
         select: {
           responses: true,
-          like: true,
+          likes: true,
         },
       },
       user: true,

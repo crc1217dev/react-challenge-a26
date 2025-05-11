@@ -1,10 +1,10 @@
 "use server";
 
-import db from "@/lib/db";
 import { revalidateTag } from "next/cache";
-import getSession from "@/lib/session";
+import { Prisma } from "@prisma/client";
+import db from "@/lib/db";
 import { responseSchema } from "@/lib/validation";
-import { Prisma } from "@/app/generated/prisma";
+import getSession from "@/lib/session";
 
 export const getInitialResponse = async (tweetId: number) => {
   const responses = await db.response.findMany({
@@ -13,7 +13,7 @@ export const getInitialResponse = async (tweetId: number) => {
     },
     select: {
       id: true,
-      tweet: true,
+      text: true,
       createdAt: true,
       user: {
         select: {
@@ -43,7 +43,7 @@ export const addTweetResponse = async (formData: FormData) => {
         data: {
           userId: session.id,
           tweetId: Number(tweetId),
-          response: result.data,
+          text: result.data,
         },
       });
     }

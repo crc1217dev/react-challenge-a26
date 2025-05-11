@@ -7,19 +7,19 @@ import {
   LockClosedIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
-import { useFormState } from "react-dom";
 
 import { editProfile } from "@/app/(tab)/users/[username]/edit/action";
 import { InitialUserInformationType } from "@/service/userService";
 import Input from "./input";
 import Button from "./button";
+import { useActionState } from "react";
 
 export default function ProfileEditForm({
   initialUserInformation,
 }: {
   initialUserInformation: InitialUserInformationType;
 }) {
-  const [state, action] = useFormState(editProfile, null);
+  const [state, action] = useActionState(editProfile, null);
 
   return (
     <form action={action} className="w-full flex flex-col gap-5">

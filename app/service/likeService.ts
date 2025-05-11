@@ -1,9 +1,8 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
-
 import db from "@/lib/db";
 import getSession from "@/lib/session";
+import { revalidateTag } from "next/cache";
 
 export const getLikeStatus = async (tweetId: number, userId: number) => {
   const like = await db.like.findUnique({

@@ -10,10 +10,10 @@ import { useActionState } from "react";
 export default function MainPage() {
   const [state, action] = useActionState(searchTweet, null);
   return (
-    <div className="flex flex-col gap-5 px-5">
+    <div className="flex flex-col gap-5 px-5 ">
       <form
         action={action}
-        className="fixed top-0 flex gap-3 w-full max-w-screen-sm py-5 bg-stone-100"
+        className="fixed top-0 flex items-center justify-center  gap-3 w-full max-w-screen-sm py-5"
       >
         <Input
           labelIcon={<MagnifyingGlassIcon className="size-6" />}
@@ -23,7 +23,7 @@ export default function MainPage() {
           required
           errors={state?.error?.formErrors}
         />
-        <div className="w-20">
+        <div className="w-20 pb-1.5">
           <Button text="검색" />
         </div>
       </form>
