@@ -1,15 +1,17 @@
 "use client";
 
+import { ReadStream } from "node:fs";
+import { ButtonHTMLAttributes } from "react";
 import { useFormStatus } from "react-dom";
 
-interface ButtonProps {
-  text: string;
-}
-
-export default function Button({ text }: ButtonProps) {
+export default function Button({
+  text,
+  ...rest
+}: { text: string } & ButtonHTMLAttributes<HTMLButtonElement>) {
   const { pending } = useFormStatus();
   return (
     <button
+      {...rest}
       disabled={pending}
       className="primary-btn h-10 disabled:bg-neutral-400  disabled:text-neutral-300 disabled:cursor-not-allowed"
     >

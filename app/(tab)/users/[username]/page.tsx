@@ -19,9 +19,9 @@ export default async function UserProfile({
             <h3 className="text-xl font-semibold">{user.username}</h3>
             <small className="text-stone-400">{user.email}</small>
           </div>
-          {(await params.username) === loggedInUser.username && (
+          {params.username === loggedInUser.username && (
             <Link
-              className="ml-auto w-fit p-3 bg-stone-300 hover:bg-stone-200 active:bg-stone-100 transition-colors rounded-2xl "
+              className="ml-auto w-fit p-3 bg-stone-600 hover:bg-stone-200 active:bg-stone-100 transition-colors rounded-2xl text-orange-500 font-bold"
               href={`/users/${loggedInUser.username}/edit`}
             >
               Edit profile

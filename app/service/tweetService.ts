@@ -71,7 +71,8 @@ export async function uploadTweet(_: unknown, formData: FormData) {
         },
       },
     });
-    redirect(`/`);
+    console.log(tweet);
+    redirect(`/tweets/${tweet.id}`);
   }
 }
 
@@ -93,5 +94,6 @@ export async function getTweetDetail(tweetId: number) {
       },
     },
   });
+  console.log(tweet);
   return tweet;
 }

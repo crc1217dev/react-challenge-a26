@@ -11,7 +11,7 @@ const publicOnlyUrls: Routes = {
 };
 
 export async function middleware(request: NextRequest) {
-  const session = await getSession();
+  const session = await getSession(request);
   const isPublicUrl = publicOnlyUrls[request.nextUrl.pathname];
   if (!session.id) {
     if (!isPublicUrl) {

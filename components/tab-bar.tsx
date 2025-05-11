@@ -18,29 +18,29 @@ export default function TabBar({ username }: { username: string }) {
   const pathname = usePathname();
 
   return (
-    <div className="fixed bottom-0 w-full mx-auto max-w-screen-sm grid grid-cols-3 px-5 py-3 border-t border-neutral-200 bg-white *:text-neutral-600">
+    <div className="fixed bottom-0 w-full mx-auto max-w-screen-sm grid grid-cols-3 px-5 py-3 border-t border-neutral-800 bg-neutral-900 *:text-neutral-400">
       <TabButton
         title="검색"
         pathname="/search"
         isActive={pathname === "/search"}
         defaultIcon={
-          <OutlineMagnifyingGlassIcon className="size-7 text-neutral-400" />
+          <OutlineMagnifyingGlassIcon className="size-7 text-neutral-500" />
         }
-        activeIcon={<MagnifyingGlassIcon className="size-7 text-neutral-900" />}
+        activeIcon={<MagnifyingGlassIcon className="size-7 text-white" />}
       />
       <TabButton
         title="홈"
         pathname="/"
         isActive={pathname === "/"}
-        defaultIcon={<OutlineHomeIcon className="size-7 text-neutral-400" />}
-        activeIcon={<SolidHomeIcon className="size-7 text-neutral-900" />}
+        defaultIcon={<OutlineHomeIcon className="size-7 text-neutral-500" />}
+        activeIcon={<SolidHomeIcon className="size-7 text-white" />}
       />
       <TabButton
-        title="나의 정보"
+        title="프로필"
         pathname={`/users/${username}`}
         isActive={pathname.includes("users")}
-        defaultIcon={<OutlineUserIcon className="size-7 text-neutral-400" />}
-        activeIcon={<SolidUserIcon className="size-7 text-neutral-900" />}
+        defaultIcon={<OutlineUserIcon className="size-7 text-neutral-500" />}
+        activeIcon={<SolidUserIcon className="size-7 text-white" />}
       />
     </div>
   );
