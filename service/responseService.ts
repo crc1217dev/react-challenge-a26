@@ -1,10 +1,10 @@
 "use server";
 
-import { Prisma } from "@/app/generated/prisma";
-import db from "@/lib/db";
-import getSession from "@/lib/session";
-import { responseSchema } from "@/lib/validation";
 import { revalidateTag } from "next/cache";
+import { Prisma } from "@prisma/client";
+import { responseSchema } from "@/lib/schema";
+import { getSession } from "@/lib/session";
+import db from "@/lib/db";
 
 export const getInitialResponse = async (tweetId: number) => {
   const responses = await db.response.findMany({

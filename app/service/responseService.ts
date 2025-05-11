@@ -3,8 +3,8 @@
 import { revalidateTag } from "next/cache";
 import { Prisma } from "@prisma/client";
 import db from "@/lib/db";
-import { responseSchema } from "@/lib/validation";
-import getSession from "@/lib/session";
+import { getSession } from "@/lib/session";
+import { responseSchema } from "@/lib/schema";
 
 export const getInitialResponse = async (tweetId: number) => {
   const responses = await db.response.findMany({

@@ -9,7 +9,7 @@ import {
 } from "@/lib/constants";
 import db from "@/lib/db";
 import { z } from "zod";
-import getSession from "@/lib/session";
+import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
 
 const checkEmailExists = async (email: string) => {

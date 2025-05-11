@@ -1,7 +1,7 @@
 "use server";
 
 import db from "@/lib/db";
-import getSession from "@/lib/session";
+import { getSession } from "@/lib/session";
 import { revalidateTag } from "next/cache";
 
 export const getLikeStatus = async (tweetId: number, userId: number) => {

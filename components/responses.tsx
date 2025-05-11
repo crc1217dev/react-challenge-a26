@@ -1,12 +1,12 @@
 "use client";
 
-import { useOptimistic } from "react";
-import { useFormState } from "react-dom";
+import { useActionState, useOptimistic } from "react";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/solid";
 
 import { addTweetResponse, InitialResponses } from "@/service/responseService";
 import Input from "./input";
-import { responseSchema } from "@/lib/validation";
+import { responseSchema } from "@/lib/schema";
+
 export default function Responses({
   initialResponses,
   tweetId,
@@ -41,7 +41,7 @@ export default function Responses({
       return result.error.flatten();
     }
   };
-  const [state, action] = useFormState(handleUploadResponse, null);
+  const [state, action] = useActionState(handleUploadResponse, null);
   return (
     <div className="w-full flex flex-col gap-3">
       <form action={action} className="flex w-full gap-2 ">

@@ -1,8 +1,9 @@
 "use server";
 
 import db from "@/lib/db";
-import getSession from "@/lib/session";
-import { checkUserPassword, profileSchema } from "@/lib/validation";
+import { profileSchema } from "@/lib/schema";
+import { getSession } from "@/lib/session";
+import { checkUserPassword } from "@/lib/validation";
 import bcrypt from "bcrypt";
 import { redirect } from "next/navigation";
 import { typeToFlattenedError } from "zod";

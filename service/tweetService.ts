@@ -3,7 +3,7 @@
 import { z } from "zod";
 import { redirect } from "next/navigation";
 import { Prisma } from "@/app/generated/prisma";
-import getSession from "@/lib/session";
+import { getSession } from "@/lib/session";
 import db from "@/lib/db";
 
 const LIMIT_NUMBER = 2;

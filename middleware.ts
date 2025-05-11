@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import getSession from "./lib/session";
+import { getSession } from "./lib/session";
 
 interface Routes {
   [key: string]: boolean;
@@ -11,7 +11,7 @@ const publicOnlyUrls: Routes = {
 };
 
 export async function middleware(request: NextRequest) {
-  const session = await getSession(request);
+  const session = await getSession();
   const isPublicUrl = publicOnlyUrls[request.nextUrl.pathname];
   if (!session.id) {
     if (!isPublicUrl) {

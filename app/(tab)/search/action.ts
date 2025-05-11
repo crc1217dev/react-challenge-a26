@@ -1,7 +1,7 @@
 "use server";
 
 import db from "@/lib/db";
-import { keywordSchema } from "@/lib/validation";
+import { keywordSchema } from "@/lib/schema";
 
 export async function searchTweet(_: unknown, formData: FormData) {
   const keyword = formData.get("keyword");

@@ -8,7 +8,7 @@ import {
 import db from "@/lib/db";
 import { z } from "zod";
 import { redirect } from "next/navigation";
-import getSession from "@/lib/session";
+import { getSession } from "@/lib/session";
 
 const checkUsername = (username: string) => !username.includes("potato");
 
