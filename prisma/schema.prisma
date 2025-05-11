@@ -8,7 +8,7 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("POSTGRES_")
+  url      = env("DATABASE_URL")
 }
 
 model User {
